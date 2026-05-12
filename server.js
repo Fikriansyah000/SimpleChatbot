@@ -1,9 +1,12 @@
 import express from 'express';
 import cors from 'cors';
 import fetch from 'node-fetch';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 // Enable CORS for your React app's origin
 app.use(cors({
@@ -12,7 +15,7 @@ app.use(cors({
 app.use(express.json());
 
 // Gemini API configuration
-const GEMINI_API_KEY = 'AIzaSyArmatY0QO5BpJpTf2zozlh_NwXeHz3ES8';
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent';
 
 app.post('/api/chat', async (req, res) => {
